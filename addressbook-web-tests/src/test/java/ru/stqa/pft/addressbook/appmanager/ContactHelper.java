@@ -36,9 +36,24 @@ public class ContactHelper extends HelperBase{
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBmonth());
     click(By.name("bmonth"));
     type(By.name("byear"), contactData.getByear());
-    click(By.name("new_group"));
-    click(By.name("new_group"));
+    click(By.name("address2"));
     type(By.name("address2"), contactData.getHomeaddress());
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//*[@value='Delete']"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("(//img[@alt='Edit'])[2]"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("//input[22]"));
   }
 
 }
