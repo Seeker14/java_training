@@ -28,6 +28,10 @@ public class ApplicationManager {
     wd.quit();
   }
 
+  public void alertSuccess(){
+    wd.switchTo().alert().accept();
+  }
+
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
