@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
+  private int id;
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -18,7 +19,27 @@ public class ContactData {
   private String group;
   private final String homeaddress;
 
+  public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String company, String homephone, String mobilephone, String workphone, String email, String bday, String bmonth, String byear, String group, String homeaddress) {
+    this.id = id;
+    this.firstname = firstname;
+    this.middlename = middlename;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.company = company;
+    this.homephone = homephone;
+    this.mobilephone = mobilephone;
+    this.workphone = workphone;
+    this.email = email;
+    this.bday = bday;
+    this.bmonth = bmonth;
+    this.byear = byear;
+    this.group = group;
+    this.homeaddress = homeaddress;
+  }
+
+
   public ContactData(String firstname, String middlename, String lastname, String nickname, String company, String homephone, String mobilephone, String workphone, String email, String bday, String bmonth, String byear, String group, String homeaddress) {
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -91,10 +112,19 @@ public class ContactData {
     return group;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
-            "firstname='" + firstname + '\'' +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }
