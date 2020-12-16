@@ -13,12 +13,26 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() throws Exception {
     app.goTo().homePage();
     List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData("Ivan", "Ivanovich", "Petrov", "Petay85", "Bank \"Otkritie\"", "74959090909", "79250257725", "74958880808", "ivan.petrov@open.ru", "15", "September", "1985", "test1", "Moscow, Gagarina street, house 9, apartment 180");
-    app.contact().create(contact, true);
+    ContactData contact = new ContactData()
+            .withFirstname("Ivan")
+            .withMiddlename("Ivanovich")
+            .withLastname("Petrov")
+            .withNickname("Petay85")
+            .withCompany("Bank \"Otkritie\"")
+            .withHomephone("74959090909")
+            .withMobilephone("79250257725")
+            .withWorkphone("74958880808")
+            .withEmail("ivan.petrov@open.ru")
+            .withBday("15")
+            .withBmonth("September")
+            .withByear("1985")
+            .withGroup("test1")
+            .withHomeaddress("Moscow, Gagarina street, house 9, apartment 180");
+    app.contact().create(contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    //contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
     Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     before.sort(byId);

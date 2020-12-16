@@ -70,7 +70,7 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[22]"));
   }
 
-  public void create(ContactData contact, boolean b) {
+  public void create(ContactData contact) {
     initContactCreation();
     fillContactForm(contact, true);
     submitContact();
@@ -105,9 +105,9 @@ public class ContactHelper extends HelperBase{
       String firstname = fields.get(2).getText();
       String lastname = fields.get(1).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
   }
+
 }
