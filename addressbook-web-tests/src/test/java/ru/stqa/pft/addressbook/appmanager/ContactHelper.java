@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -71,18 +70,23 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[22]"));
   }
 
-  public void createContact(ContactData contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     initContactCreation();
     fillContactForm(contact, true);
     submitContact();
     returntoHomePage();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     initContactModification(index);
     fillContactForm(contact, false);
     submitContactModification();
     returntoHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContact();
   }
 
   public boolean isThereAContact() {
@@ -93,19 +97,7 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  /* public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
-    for (WebElement element : elements){
-      String firstname = element.getText();
-      String lastname = element.getText();
-      ContactData contact = new ContactData(firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
-    }
-    return contacts;
-  } */
-
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
