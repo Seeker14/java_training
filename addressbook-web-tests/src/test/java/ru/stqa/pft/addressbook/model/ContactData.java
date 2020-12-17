@@ -18,6 +18,16 @@ public class ContactData {
   private String byear;
   private String group;
   private String homeaddress;
+  private String allPhones;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   public String getFirstname() {
     return firstname;
