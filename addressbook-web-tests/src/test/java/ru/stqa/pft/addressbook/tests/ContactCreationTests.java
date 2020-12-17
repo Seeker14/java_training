@@ -19,15 +19,18 @@ public class ContactCreationTests extends TestBase {
             .withLastname("Petrov")
             .withNickname("Petay85")
             .withCompany("Bank \"Otkritie\"")
+            .withHomeaddress("Ореховый бульвар, дом 7, корпус 2")
             .withHomephone("74959090909")
             .withMobilephone("79250257725")
             .withWorkphone("74958880808")
             .withEmail("ivan.petrov@open.ru")
+            .withEmail2("elena.egorova@open.ru")
+            .withEmail3("lesha.ivanov@list.ru")
             .withBday("15")
             .withBmonth("September")
             .withByear("1985")
             .withGroup("test1")
-            .withHomeaddress("Moscow, Gagarina street, house 9, apartment 180");
+            .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180");
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
@@ -45,15 +48,18 @@ public class ContactCreationTests extends TestBase {
             .withLastname("Petrov")
             .withNickname("Petay85")
             .withCompany("Bank \"Otkritie\"")
+            .withHomeaddress("Ореховый бульвар, дом 7, корпус 2")
             .withHomephone("74959090909")
             .withMobilephone("79250257725")
             .withWorkphone("74958880808")
             .withEmail("ivan.petrov@open.ru")
+            .withEmail2("elena.egorova@open.ru")
+            .withEmail3("lesha.ivanov@list.ru")
             .withBday("15")
             .withBmonth("September")
             .withByear("1985")
             .withGroup("test1")
-            .withHomeaddress("Moscow, Gagarina street, house 9, apartment 180");
+            .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180");
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
