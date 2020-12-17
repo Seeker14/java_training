@@ -81,6 +81,7 @@ public class ContactHelper extends HelperBase{
     initContactCreation();
     fillContactForm(contact, true);
     submitContact();
+    contactCache = null;
     returntoHomePage();
   }
 
@@ -88,12 +89,14 @@ public class ContactHelper extends HelperBase{
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returntoHomePage();
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
+    contactCache = null;
   }
 
   public boolean isThereAContact() {
@@ -104,8 +107,14 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows){
       List<WebElement> cells = row.findElements(By.cssSelector("td"));
@@ -113,10 +122,10 @@ public class ContactHelper extends HelperBase{
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
-      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
               .withAllPhones(allPhones));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 
