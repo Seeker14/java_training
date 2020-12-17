@@ -7,8 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -50,8 +51,8 @@ public class ContactHelper extends HelperBase{
     type(By.name("address2"), contactData.getHomeaddress());
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void deleteSelectedContact() {
@@ -66,6 +67,10 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("(//img[@alt='Edit'])"));
   }
 
+  public void initContactModificationById(int id) {
+    wd.findElement(By.xpath("(//img[@alt='Edit'])['" + id + "']")).click();
+  }
+
   public void submitContactModification() {
     click(By.xpath("//input[22]"));
   }
@@ -77,15 +82,15 @@ public class ContactHelper extends HelperBase{
     returntoHomePage();
   }
 
-  public void modify(int index, ContactData contact) {
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returntoHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
   }
 
@@ -97,8 +102,8 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       List<WebElement> fields = element.findElements(By.cssSelector("td"));
