@@ -1,0 +1,59 @@
+<list>
+  <contact>
+    <firstname>Тест 0</firstname>
+    <middlename>Тестович 0</middlename>
+    <lastname>Тестовый 0</lastname>
+    <nickname>Test 0</nickname>
+    <company>QA 0</company>
+    <homeaddress>г. Ошибок, дом. 0</homeaddress>
+    <homephone>110</homephone>
+    <mobilephone>111110</mobilephone>
+    <workphone>111111110</workphone>
+    <email>test_0@mail.ru</email>
+    <email2>test2_0@mail.ru</email2>
+    <email3>test3_0@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>February</bmonth>
+    <byear>1990</byear>
+    <group>test 0</group>
+    <additionaladdress>г. Исправлений, дом. 0</additionaladdress>
+  </contact>
+  <contact>
+    <firstname>Тест 1</firstname>
+    <middlename>Тестович 1</middlename>
+    <lastname>Тестовый 1</lastname>
+    <nickname>Test 1</nickname>
+    <company>QA 1</company>
+    <homeaddress>г. Ошибок, дом. 1</homeaddress>
+    <homephone>111</homephone>
+    <mobilephone>111111</mobilephone>
+    <workphone>111111111</workphone>
+    <email>test_1@mail.ru</email>
+    <email2>test2_1@mail.ru</email2>
+    <email3>test3_1@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>February</bmonth>
+    <byear>1991</byear>
+    <group>test 1</group>
+    <additionaladdress>г. Исправлений, дом. 1</additionaladdress>
+  </contact>
+  <contact>
+    <firstname>Тест 2</firstname>
+    <middlename>Тестович 2</middlename>
+    <lastname>Тестовый 2</lastname>
+    <nickname>Test 2</nickname>
+    <company>QA 2</company>
+    <homeaddress>г. Ошибок, дом. 2</homeaddress>
+    <homephone>112</homephone>
+    <mobilephone>111112</mobilephone>
+    <workphone>111111112</workphone>
+    <email>test_2@mail.ru</email>
+    <email2>test2_2@mail.ru</email2>
+    <email3>test3_2@mail.ru</email3>
+    <bday>1</bday>
+    <bmonth>February</bmonth>
+    <byear>1992</byear>
+    <group>test 2</group>
+    <additionaladdress>г. Исправлений, дом. 2</additionaladdress>
+  </contact>
+</list>
