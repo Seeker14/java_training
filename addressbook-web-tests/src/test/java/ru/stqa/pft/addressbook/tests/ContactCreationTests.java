@@ -54,18 +54,18 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation(ContactData contact) throws Exception {
     File photo = new File("src/test/resources/stru.png");
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((p) -> p.getId()).max().getAsInt()))));
   }
 
-  @Test (enabled = false)
+  @Test (enabled = true)
   public void testBadContactCreation() throws Exception {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData contact = new ContactData()
             .withFirstname("Ivan'")
             .withMiddlename("Ivanovich")
@@ -86,7 +86,7 @@ public class ContactCreationTests extends TestBase {
             .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180");
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before));
   }
 

@@ -86,12 +86,12 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().withFirstname(String.format("Тест %s", i))
-              .withMiddlename(String.format("Тестович %s", i))
-              .withLastname(String.format("Тестовый %s", i))
+      contacts.add(new ContactData().withFirstname(String.format("Test %s", i))
+              .withMiddlename(String.format("Testovich %s", i))
+              .withLastname(String.format("Testoviy %s", i))
               .withNickname(String.format("Test %s", i))
               .withCompany(String.format("QA %s", i))
-              .withHomeaddress(String.format("г. Ошибок, дом. %s", i))
+              .withHomeaddress(String.format("city Bugs, house %s", i))
               .withHomephone(String.format("11%s", i))
               .withMobilephone(String.format("11111%s", i))
               .withWorkphone(String.format("11111111%s", i))
@@ -102,7 +102,7 @@ public class ContactDataGenerator {
               .withBmonth(String.format("February", i))
               .withByear(String.format("199%s", i))
               .withGroup(String.format("test %s", i))
-              .withAdditionalAddress(String.format("г. Исправлений, дом. %s", i)));
+              .withAdditionalAddress(String.format("city Fix, house %s", i)));
     }
     return contacts;
   }
