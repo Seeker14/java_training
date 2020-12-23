@@ -3,52 +3,90 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
+
+@Entity
+@Table (name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
+
   @XStreamOmitField
+  @Id
+  @Column (name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column (name = "firstname")
   private String firstname;
   @Expose
+  @Column (name = "middlename")
   private String middlename;
   @Expose
+  @Column (name = "lastname")
   private String lastname;
   @Expose
+  @Column (name = "nickname")
   private String nickname;
   @Expose
+  @Column (name = "company")
   private String company;
   @Expose
+  @Column (name = "address")
+  @Type (type = "text")
   private String homeaddress;
   @Expose
+  @Column (name = "home")
+  @Type (type = "text")
   private String homephone;
   @Expose
+  @Column (name = "mobile")
+  @Type (type = "text")
   private String mobilephone;
   @Expose
+  @Column (name = "work")
+  @Type (type = "text")
   private String workphone;
   @Expose
+  @Column (name = "email")
+  @Type (type = "text")
   private String email;
   @Expose
+  @Column (name = "email2")
+  @Type (type = "text")
   private String email2;
   @Expose
+  @Column (name = "email3")
+  @Type (type = "text")
   private String email3;
   @Expose
+  @Column (name = "bday")
+  @Transient            //поле не будет извлечено, будет пропущено
   private String bday;
   @Expose
+  @Transient            //поле не будет извлечено, будет пропущено
   private String bmonth;
   @Expose
+  @Transient            //поле не будет извлечено, будет пропущено
   private String byear;
   @Expose
+  @Transient            //поле не будет извлечено, будет пропущено
   private String group;
   @Expose
+  @Column (name = "address2")
+  @Type (type = "text")
   private String additionaladdress;
+  @Transient            //поле не будет извлечено, будет пропущено
   private String allPhones;
+  @Transient
   private String allEmails;
-  private File photo;
+  @Column (name = "photo")
+  @Type (type = "text")
+  private String photo;
 
-  public File getPhoto() { return photo; }
+  public File getPhoto() { return new File(photo); }
 
   public String getAllEmails() { return allEmails; }
 
@@ -219,17 +257,8 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
   }
 
   @Override
@@ -247,4 +276,12 @@ public class ContactData {
     return Objects.hash(id, firstname, lastname);
   }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
 }
