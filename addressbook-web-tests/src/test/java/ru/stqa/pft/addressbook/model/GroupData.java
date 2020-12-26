@@ -3,12 +3,10 @@ package ru.stqa.pft.addressbook.model;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 
 @XStreamAlias("group")

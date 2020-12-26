@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-
+import ru.stqa.pft.addressbook.model.GroupData;
+import static org.testng.Assert.assertFalse;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -47,15 +47,35 @@ public class ContactHelper extends HelperBase{
     click(By.name("bmonth"));
     type(By.name("byear"), contactData.getByear());
     if (creation) {
- //     if (contactData.getGroups().size() > 1) {
-   //     Assert.assertTrue(ContactData.getGroups().size() ==1);
-  //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-  //    }
+//      if (contactData.getGroups().size() > 1) {
+//        assertTrue(ContactData.getGroups().size() ==1);
+//        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+//      }
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      assertFalse(isElementPresent(By.name("new_group")));
     }
     click(By.name("address2"));
     type(By.name("address2"), contactData.getAdditionaladdress());
+  }
+
+  public void selectGroupList(String name) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+  }
+
+  public void removeFromGroup(String name) {
+    click(By.name("remove"));
+  }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+    click(By.name("add"));
+  }
+
+  public void removeContactFromGroup(ContactData contact, GroupData group) {
+    selectGroupList(group.getName());
+    selectContactById(contact.getId());
+    removeFromGroup(group.getName());
   }
 
   public void selectContactById(int id) {
