@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.Iterator;
@@ -65,8 +66,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test (enabled = false)
   public void testBadContactCreation() throws Exception {
-    app.goTo().homePage();
-    Contacts before = app.db().contacts();
+    Groups groups = app.db().groups();
     ContactData contact = new ContactData()
             .withFirstname("Ivan'")
             .withMiddlename("Ivanovich")
@@ -83,8 +83,10 @@ public class ContactCreationTests extends TestBase {
             .withBday("15")
             .withBmonth("September")
             .withByear("1985")
-            .withGroup("test1")
+            .inGroup(groups.iterator().next())
             .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180");
+    app.goTo().homePage();
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();

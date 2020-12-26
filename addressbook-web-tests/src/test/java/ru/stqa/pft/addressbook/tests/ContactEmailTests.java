@@ -32,7 +32,7 @@ public class ContactEmailTests extends TestBase {
               .withBday("15")
               .withBmonth("September")
               .withByear("1985")
-              .withGroup("test1")
+  //            .withGroup("test1")
               .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180"));
     }
   }

@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase{
               .withBday("15")
               .withBmonth("September")
               .withByear("1985")
-              .withGroup("test1")
+         //     .withGroup("test1")
               .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180"));
     }
   }
@@ -57,7 +57,7 @@ public class ContactModificationTests extends TestBase{
             .withBday("15")
             .withBmonth("September")
             .withByear("1985")
-            .withGroup("test1")
+      //      .withGroup("test1")
             .withAdditionalAddress("Moscow, Gagarina street, house 9, apartment 180");
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));

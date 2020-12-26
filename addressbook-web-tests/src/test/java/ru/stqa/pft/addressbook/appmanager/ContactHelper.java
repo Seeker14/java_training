@@ -46,8 +46,11 @@ public class ContactHelper extends HelperBase{
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBmonth());
     click(By.name("bmonth"));
     type(By.name("byear"), contactData.getByear());
-    if (creation){
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    if (creation) {
+ //     if (contactData.getGroups().size() > 1) {
+   //     Assert.assertTrue(ContactData.getGroups().size() ==1);
+  //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+  //    }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
