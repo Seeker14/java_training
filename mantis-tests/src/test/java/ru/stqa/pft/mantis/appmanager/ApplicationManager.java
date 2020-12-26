@@ -48,4 +48,12 @@ public class ApplicationManager {
   public void alertSuccess(){
     wd.switchTo().alert().accept();
   }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }
