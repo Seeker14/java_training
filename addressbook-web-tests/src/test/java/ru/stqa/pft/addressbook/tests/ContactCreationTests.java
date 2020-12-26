@@ -60,9 +60,10 @@ public class ContactCreationTests extends TestBase {
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((p) -> p.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
 
-  @Test (enabled = true)
+  @Test (enabled = false)
   public void testBadContactCreation() throws Exception {
     app.goTo().homePage();
     Contacts before = app.db().contacts();
