@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase{
 
-  @BeforeMethod
+  //@BeforeMethod
   public void startMailServer() {
     app.mail().start();
   }
@@ -25,8 +25,10 @@ public class RegistrationTests extends TestBase{
     String user = String.format("user%s", now);
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);                //(1) параметр шаблон; (2) то, что должно подставиться вместо %s
+    app.james().createUser(user, password);                                           //создание пользователя на внешнем почтовом сервере
     app.registration().start(user, email);
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);   //ожидаение письма: ждём 2 письма, ждём 10000 миллисекунд
+    //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);   //ожидаение письма: ждём 2 письма, ждём 10000 миллисекунд
+    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000); //время ожидаения указано больше, поскольку на внешний почтовый сервер письма идут дольше
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);                           //завершаем регистрацию
     assertTrue (app.newSession().login(user, password));                             //авторизация: проверяем, что регистрация прошла успешно
@@ -38,7 +40,7 @@ public class RegistrationTests extends TestBase{
     return regex.getText(mailMessage.text);                                                                 //применяем регулярное выражение к тексту письма и возвращаем получивашееся значение
   }
 
-  @AfterMethod (alwaysRun = true)   //почтовый сервер будет останавливаться, даже если тест завершится не успешно
+  //@AfterMethod (alwaysRun = true)   //почтовый сервер будет останавливаться, даже если тест завершится не успешно
   public void stopMailServer() {
     app.mail().stop();
   }
