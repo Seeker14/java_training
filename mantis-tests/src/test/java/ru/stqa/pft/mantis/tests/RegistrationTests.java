@@ -25,10 +25,10 @@ public class RegistrationTests extends TestBase{
     String user = String.format("user%s", now);
     String password = "password";
     String email = String.format("user%s@localhost.localdomain", now);                //(1) параметр шаблон; (2) то, что должно подставиться вместо %s
-    app.james().createUser(user, password);                                           //создание пользователя на внешнем почтовом сервере
+    //app.james().createUser(user, password);                                           //создание пользователя на внешнем почтовом сервере
     app.registration().start(user, email);
-    //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);   //ожидаение письма: ждём 2 письма, ждём 10000 миллисекунд
-    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000); //время ожидаения указано больше, поскольку на внешний почтовый сервер письма идут дольше
+    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);   //ожидаение письма: ждём 2 письма, ждём 10000 миллисекунд
+    //List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000); //время ожидаения указано больше, поскольку на внешний почтовый сервер письма идут дольше
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);                           //завершаем регистрацию
     assertTrue (app.newSession().login(user, password));                             //авторизация: проверяем, что регистрация прошла успешно
