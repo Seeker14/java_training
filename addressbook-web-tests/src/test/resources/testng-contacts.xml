@@ -5,7 +5,10 @@
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.ContactCreationTests"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactModificationTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactEmailTests"/>
             <class name="ru.stqa.pft.addressbook.tests.ContactDeletionTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.AddContactToGroupTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.DeleteContactFromGroupTests"/>
         </classes>
     </test>
 </suite>
